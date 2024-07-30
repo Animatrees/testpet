@@ -1,0 +1,32 @@
+# Django
+*.log
+*.pot
+__pycache__/
+media
+
+# PyCharm
+.idea/
+
+# Postgres
+*.sql
+
+# Redis
+dump.rdb
+
+# Environment variables
+.env
+
+# Kubuntu
+.directory
+
+# Virtual environment
+djvenv/
+
+# Compiled Python files
+*.pyc
+
+# Static files collected
+/staticfiles/
+
+# Media files
+/media/

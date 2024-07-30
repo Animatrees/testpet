@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% load static %}
+{% load custom_tags %}
+<html>
+<head>
+    <title>{{title}}</title>
+    <link type="text/css" href="{% static 'basefunc/css/styles.css' %}" rel="stylesheet"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="shortcut icon" href="{% static 'basefunc/images/main.ico' %}" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<table class="table-page" border=0 cellpadding="0" cellspacing="0">
+    <tr>
+        <td valign=top>
+            {% block mainmenu %}
+            <div class="header">
+                <ul id="mainmenu" class="mainmenu">
+                    <li class="logo"><a href="{% url 'home' %}">
+                        <div class="logo"></div>
+                    </a></li>
+                    {% for m in menu %}
+                    <li><a href="{% url m.url_name %}">{{ m.title }}</a></li>
+                    {% endfor %}
+                    <li class="last">
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'users:profile' %}">{{user.username}}</a> | <a href="{% url 'users:logout' %}?next={{ request.path }}"
+                                                                                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Выйти</a>
+                    </li>
+                    <form id="logout-form" action="{% url 'users:logout' %}" method="post" style="display: none;">
+                        {% csrf_token %}
+                    </form>
+                    {% else %}
+                    <a href="{% url 'users:login' %}?next={{ request.path }}">Войти</a> | <a
+                        href="{% url 'users:register' %}">Регистрация</a> </li>
+                    {% endif %}
+                </ul>
+                <div class="clear"></div>
+            </div>
+            {% endblock mainmenu %}
+
+
+            <table class="table-content" border=0 cellpadding="0" cellspacing="0">
+                <tr>
+                    <!-- Sidebar слева -->
+                    <td valign="top" class="left-chapters">
+                        <ul id="leftchapters">
+                            {% cats_menu cat_id %} <br>
+                            {% tags_menu tag_id %}
+                        </ul>
+                    </td>
+                    <!-- Конец Sidebar'а -->
+                    <td valign="top" class="content">
+                        <!-- Хлебные крошки -->
+                        {% block breadcrumbs %}
+                        {% endblock %}
+
+                        <!-- Блок контента -->
+                        <div class="content-text">
+                            {% block content %}
+                            {% endblock %}
+                        </div>
+                        <!-- Конец блока контента -->
+                        {% block navigation %}
+                        {% endblock %}
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <!-- Footer -->
+    <tr>
+        <td valign=top>
+            <div id="footer">
+                <p></p>
+            </div>
+        </td>
+    </tr>
+</table>
+<!-- Конец footer'а и страницы -->
+</body>
+</html>

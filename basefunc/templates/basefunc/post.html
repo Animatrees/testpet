@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block breadcrumbs %}
+<!-- Категория -->
+{% if post.cat %}
+<ul class="tags-list">
+    <li>Категория: <a href="{{post.cat.get_absolute_url}}">{{post.cat.title}}</a></li>
+</ul>
+{% endif %}
+
+<!-- Теги -->
+    {% with post.tags.all as tags %}
+        {% if tags %}
+            <p>
+            <ul class="tags-list">
+                <li>Страна:</li>
+                {% for t in tags %}
+                <li><a href="{{t.get_absolute_url}}">{{t.title}}</a></li>
+                {% endfor %}
+            </ul>
+            </p>
+        {% endif %}
+    {% endwith %}
+{% endblock %}
+
+{% block content %}
+{% if post.photo %}
+    <img class="img-article-left" src="{{post.photo.url}}" alt="{{post.title}}">
+{% endif %}
+<h1>{{ post.title }}</h1>
+
+{% if post.img %}
+    <p><img src="{{ post.photo.url }}"></p>
+{% endif %}
+<p>{{ post.content|linebreaks }}</p><br>
+{% if post.author == user or user.is_staff %}
+<p class="link-read-post"><a href="{% url 'edit_page' slug=post.slug %}">Редактировать пост</a></p>
+<p class="link-read-post"><a href="{% url 'delete_page' slug=post.slug %}">Удалить пост</a></p>
+{% endif %}
+{% endblock %}

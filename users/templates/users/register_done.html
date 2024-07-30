@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+<p>Для входа в систему необходимо авторизоваться <a href="{% url 'users:login' %}">здесь</a>.
+</p>
+
+{% endblock %}

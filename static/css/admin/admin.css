@@ -1,0 +1,16 @@
+#header, .module caption {
+    background: #0d7952;
+}
+
+div.breadcrumbs {
+    background: #f1d4cb;
+    color: #8a3324;
+}
+
+div.breadcrumbs a {
+    color: #92000a;
+}
+
+.module h2, .module caption, .inline-group h2 {
+    background: #6A6E5D;
+}

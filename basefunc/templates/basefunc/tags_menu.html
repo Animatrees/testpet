@@ -1,0 +1,26 @@
+{% if tags %}
+    <p class="strong">Страна:</p>
+    <ul class="tags-list">
+        {% for t in tags %}
+        {% if t.id == tag_id %}
+        <li class="selected"><a href="{{t.get_absolute_url}}">{{t.title}}</a></li>
+        {% else %}
+        <li><a href="{{t.get_absolute_url}}">{{t.title}}</a></li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+{% endif %}
+
+
+<!--{% if title == 'Главная страница' %}-->
+<!--    <li class="selected">Все категории</li>-->
+<!--{% else %}-->
+<!--    <li><a href="{% url 'home' %}">Все категории</a></li>-->
+<!--{% endif %}-->
+<!--{% for cat in cats %}-->
+<!--    {% if cat.id == cat_id %}-->
+<!--        <li class="selected">{{ cat.title }}</li>-->
+<!--    {% else %}-->
+<!--        <li><a href="{{ cat.get_absolute_url }}">{{ cat.title }}</a></li>-->
+<!--    {% endif %}-->
+<!--{% endfor %}-->
