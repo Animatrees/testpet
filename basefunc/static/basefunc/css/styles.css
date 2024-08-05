@@ -1,5 +1,6 @@
 html, body {
-	font-family: 'Arial';
+	font-family: "Raleway", sans-serif;
+	background: #f4f3ef;
 	margin: 0;
 	padding: 0;
 	height: 100%;
@@ -8,12 +9,11 @@ html, body {
 }
 
 a {
-	color: #0059b2;
+	color: #000;
 	text-decoration: none;
 }
 a:hover {
-	color: #CC0000;
-	text-decoration: underline;
+	color: #EC4067;
 }
 
 img {max-width: 600px; height: auto;}
@@ -36,7 +36,7 @@ p.link-read-post {
 p.link-read-post a {
 	padding: 10px;
 	min-width: 100px;
-	background: #333671;
+	background: #EC4067;
 	color: #fff;
 	text-decoration: none;
 }
@@ -63,7 +63,7 @@ ul.list-articles {
 }
 
 ul.list-articles li {
-	border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid #61C9A8;
 }
 
 ul.list-articles li:last-child { border-bottom: none; }
@@ -78,14 +78,15 @@ ul.list-articles li:last-child { border-bottom: none; }
 .clear {clear: both;}
 
 .header {
-	background: #3F4137;
+	background: #4C3B4D;
 	height: 60px;
 }
 
 .logo {
-	background: url('../images/logo.png') no-repeat 10px 0px;
-	width: 70px;
-	height: 60px;
+    background: url('../images/logo.png?v=2') no-repeat 10px 0px;
+    background-size: contain;
+    width: 70px;
+    height: 60px;
 }
 
 ul.mainmenu {
@@ -93,7 +94,7 @@ ul.mainmenu {
 	margin: 0;
 	padding: 0;
 	height: 60px;
-	color: #fdc073;
+	color: #EC4067;
 	font-size: 20px;
 	overflow: hidden;
 }
@@ -105,11 +106,11 @@ ul.mainmenu li.logo {margin: 0;}
 ul.mainmenu li.last {float: right;}
 
 ul.mainmenu li a {
-	color: #fdc073;
+	color: #fff;
 	text-decoration: none;
 }
 ul.mainmenu li a:hover {
-	color: #FDA83D;
+	color: #EC4067;
 }
 
 .panelitems {
@@ -148,7 +149,7 @@ ul.langitem li a:hover {
 	color: #FDA83D;
 }
 div.button {
-	background: #3F4137;
+	background: #4D6D9A;
 	max-width: 200px;
 	margin: 0 auto;
 	padding: 5px 20px 5px 20px;
@@ -164,12 +165,12 @@ div.button {
 
 .left-chapters {
 	margin: 0;
-	background: #eee;
+	background: #61C9A8;
 	border-right: 1px solid #ccc;
 }
 
 .left-chapters p.strong {
-    color: #808080; font-weight: bold;
+    color: #000;
 }
 
 .left-chapters ul {
@@ -177,18 +178,18 @@ div.button {
 	margin: 0;
 	padding: 20px 10px 10px 20px;
 	list-style: none;
-	font-size: 20px;
+	font-size: 22px;
 }
 .left-chapters ul li {
 	margin: 30px 0 0 0;
 	color: #999;
 }
-.left-chapters ul li.selected {color: #0059b2; font-weight: bold;}
+.left-chapters ul li.selected {color: #000; font-weight: bold; font-weight: 550;}
 .left-chapters ul li a {
-	color: #444;
+	color: #4C3B4D;
 	text-decoration: none;
 }
-.left-chapters ul li a:hover { color: #CC0000; }
+.left-chapters ul li a:hover { color: #EC4067; }
 .left-chapters ul li.share {margin: 60px 0 0 0;}
 .left-chapters ul li.share p {margin: 30px 0 30px 0;}
 .left-chapters ul li.share a {
@@ -221,7 +222,7 @@ ul.tags-list li {
     display: inline-block;
 }
 
-ul.tags-list li.selected {color: #0059b2; font-weight: bold;}
+ul.tags-list li.selected {color: #FDA83D; font-weight: bold;}
 
 ul.tags-list li a {
 	padding: 5px;
@@ -292,17 +293,25 @@ ul.content-table li a:hover {color: #F0711C;}
 	margin: 60px 0 0 30px;
 	color: #000;
 	font-size: 20px;
-	font-family: Yandex Sans Display Light;
+	font-weight: 350;
+	font-family: "Nunito", sans-serif;
 	max-width: 1200px;
 	min-width: 420px;
 }
-.content-text h1 {font-size: 32px;}
+.content-text h1 {
+    font-size: 40px;
+    font-family: "Cormorant Garamond", serif;
+}
+
+.content-text h2 {
+    font-family: "Cormorant Garamond", serif;
+}
 
 ul.lang-list {
 	list-style: none;
 	margin: 0;
 	padding: 14px 0 0 0;
-	background: #3F4137;
+	background: #4D6D9A;
 	width: 100%;
 	height: 50px;
 	border-top: 1px solid #959A82;
@@ -386,7 +395,7 @@ ul.lang-list li a:hover {color: #fdc073;}
 #footer {
 	box-sizing: border-box;
 
-	background: #3F4137;
+	background: #4C3B4D;
 	padding: 5px;
 	color: #aaa;
 	font-size: 14px;
@@ -418,7 +427,11 @@ ul.lang-list li a:hover {color: #fdc073;}
 
 .form-button {
     min-width: 200px;
-    font-size: 16px;
+    font-size: 20px;
+    padding: 10px;
+	background: #EC4067;
+	color: #fff;
+	border-style: none;
 }
 
 .help-text {

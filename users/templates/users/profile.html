@@ -16,7 +16,7 @@
     <div class="form-error">{{ f.errors }}</div>
     {% endfor %}
 
-    <p><button type="submit">Сохранить</button></p>
+    <p><button type="submit" class="form-button">Сохранить</button></p>
     {% if user.has_usable_password %}
     <p ><a href="{% url 'users:password_change' %}">Сменить пароль</a></p>
     {% endif %}
