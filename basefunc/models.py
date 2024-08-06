@@ -99,8 +99,8 @@ class Tags(models.Model):
         return reverse('tag', kwargs={'tag_slug': self.slug})
 
     class Meta:
-        verbose_name = 'Tag'
-        verbose_name_plural = 'Tags'
+        verbose_name = 'Страна'
+        verbose_name_plural = 'Страны'
         ordering = ['title']
 
 

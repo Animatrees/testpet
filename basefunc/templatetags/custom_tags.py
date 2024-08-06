@@ -15,5 +15,5 @@ def cats_menu(context, cat_id):
 
 @register.inclusion_tag('basefunc/tags_menu.html')
 def tags_menu(tag_id):
-    sorted_tags = Tags.objects.annotate(num_posts=Count('women')).filter(num_posts__gt=0).order_by('-num_posts', 'title')
+    sorted_tags = Tags.objects.annotate(num_posts=Count('women')).filter(num_posts__gt=0).order_by('title')
     return {'tags': sorted_tags, 'tag_id': tag_id}

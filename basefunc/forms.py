@@ -4,7 +4,7 @@ from .models import *
 
 
 class AddPostForm(forms.ModelForm):
-    tags = forms.ModelMultipleChoiceField(queryset=Tags.objects.all(), widget=forms.CheckboxSelectMultiple)
+    tags = forms.ModelMultipleChoiceField(queryset=Tags.objects.all(), widget=forms.CheckboxSelectMultiple, label='Страна')
     photo_url = forms.URLField(required=False, label='URL изображения')
 
     class Meta:
