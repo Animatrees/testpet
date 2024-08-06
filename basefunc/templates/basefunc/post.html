@@ -36,5 +36,7 @@
 {% if post.author == user or user.is_staff %}
 <p class="link-read-post"><a href="{% url 'edit_page' slug=post.slug %}">Редактировать пост</a></p>
 <p class="link-read-post"><a href="{% url 'delete_page' slug=post.slug %}">Удалить пост</a></p>
+{% else %}
+<p class="note align-right">Заметили неточность? <a href="{% url 'contact' %}?info=Проблема в посте о: {{ post.title }}">Сообщите нам.</a></p>
 {% endif %}
 {% endblock %}

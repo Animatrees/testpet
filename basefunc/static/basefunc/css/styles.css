@@ -18,6 +18,26 @@ a:hover {
 	color: #EC4067;
 }
 
+
+
+textarea {
+    font-family: "Nunito", sans-serif;
+    font-weight: 350;
+    font-size: 18px;
+}
+
+input {
+    font-family: "Nunito", sans-serif;
+    font-weight: 350;
+    font-size: 18px;
+}
+
+select {
+    font-family: "Nunito", sans-serif;
+    font-weight: 350;
+    font-size: 18px;
+}
+
 img {max-width: 600px; height: auto;}
 
 img.img-article-left {
@@ -412,12 +432,13 @@ ul.lang-list li a:hover {color: #fdc073;}
 
 .form-input {
     width: 300px;
-    font-size: 16px;
 }
 
 .form-label {
     display: inline-block;
     min-width: 15%;
+    font-size: 18px;
+    font-weight: 300;
     vertical-align: top;
 }
 
@@ -530,4 +551,17 @@ input[type="checkbox"]:checked::before {
     color: white;
     font-size: 14px;
     line-height: 20px;
+}
+
+.note {
+    margin-top: 0;
+    font-size: 18px;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.align-left {
+    text-align: left;
 }

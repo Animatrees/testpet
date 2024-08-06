@@ -13,5 +13,6 @@
     <div class="form-error">{{ f.errors }}</div>
     {% endfor %}
     <p><button type="submit" class="form-button">Сохранить</button></p>
+    <p class="note align-left">Нет нужной категории или страны? <a href="{% url 'contact' %}?info=Просьба добавить категорию/страну">Сообщите нам.</a></p>
 </form>
 {% endblock content %}

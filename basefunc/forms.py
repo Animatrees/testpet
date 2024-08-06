@@ -16,6 +16,7 @@ class ContactForm(forms.Form):
     name = forms.CharField(label='Имя', widget=forms.TextInput(attrs={'class': 'form-input'}))
     email = forms.CharField(required=False, label='E-mail',
                             widget=forms.TextInput(attrs={'class': 'form-input'}))
+    theme = forms.CharField(label='Тема', widget=forms.TextInput(attrs={'class': 'form-input'}))
     content = forms.CharField(label='Комментарий', widget=forms.Textarea(attrs={'cols': 60, 'rows': 10}))
 
     def __init__(self, *args, **kwargs):

@@ -86,16 +86,19 @@ class ContactFormView(DataMixin, FormView):
     def get_form_kwargs(self):
         kwargs = super(ContactFormView, self).get_form_kwargs()
         kwargs['user'] = self.request.user
+        info = self.request.GET.get('info', '')
+        kwargs['initial'] = {'theme': info}
         return kwargs
 
     def form_valid(self, form):
         # Получение данных формы
         name = form.cleaned_data['name']
         email = form.cleaned_data['email']
+        theme = form.cleaned_data['theme']
         content = form.cleaned_data['content']
 
         # Формирование данных для письма
-        subject = f'Обратная связь от {name}'
+        subject = theme
         message = f'Сообщение от {name} ({email}):\n\n{content}'
         from_email = settings.EMAIL_HOST_USER
         recipient_list = [settings.EMAIL_HOST_USER]
