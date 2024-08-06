@@ -455,6 +455,7 @@ ul.lang-list li a:hover {color: #fdc073;}
 	background: #EC4067;
 	color: #fff;
 	border-style: none;
+	cursor: pointer;
 }
 
 .help-text {
