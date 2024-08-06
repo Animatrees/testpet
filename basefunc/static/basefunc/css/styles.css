@@ -487,3 +487,45 @@ ul.lang-list li a:hover {color: #fdc073;}
 .list-pages .page-num-selected:hover {
    box-shadow: none;
 }
+
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+}
+
+Copy.checkbox-container {
+    display: flex;
+    align-items: center;
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin: 2px;
+    margin-right: 5px;
+}
+
+label {
+    display: flex;
+    align-items: center;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #EC4067;
+    border-color: #EC4067;
+}
+
+input[type="checkbox"]:checked::before {
+    content: '\2714';
+    display: block;
+    text-align: center;
+    color: white;
+    font-size: 14px;
+    line-height: 20px;
+}
