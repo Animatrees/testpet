@@ -9,7 +9,7 @@ register = template.Library()
 
 @register.inclusion_tag('basefunc/cats_menu.html', takes_context=True)
 def cats_menu(context, cat_id):
-    cats = Category.objects.all()
+    cats = Category.objects.all().order_by('pk')
     return {'cats': cats, 'cat_id': cat_id, 'title': context['title']}
 
 

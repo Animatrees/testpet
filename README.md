@@ -25,6 +25,8 @@ and countries, and add new entries after logging in.
 * PostgreSQL
 * Redis
 * OAuth
+* Requests
+* Unittest
 
 ## Main Features
 
