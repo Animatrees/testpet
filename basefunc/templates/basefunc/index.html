@@ -1,58 +1,33 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<ul class="list-articles">
-	<p>{{ empty_list_message }}</p>
-	{% for p in posts %}
-			<li>
-				{% if p.photo %}
-						<img class="img-article-left thumb" src="{{p.photo.url}}" alt="{{p.title}}"></p>
-					{% endif %}
-			<h2>{{p.title}}</h2>
-				{% autoescape off %}
-				{{p.content|linebreaks|truncatechars:300}}
-				{% endautoescape %}
-				<div class="clear"></div>
-				<div class="article-panel">
-					<p class="first">Обновлено: {{p.time_update|date:"d-m-Y H:i:s"}} | Автор: {{ p.author.username|default:'Админ'}}</p>
-					<p class="link-read-post"><a href="{{ p.get_absolute_url }}">Подробнее</a></p>
-				</div>
-			</li>
-	{% endfor %}
+<ul id="list-articles" class="list-articles">
+    <p>{{ empty_list_message }}</p>
+    {% for p in page_obj %}
+          <li class="article">
+             {% if p.photo %}
+                   <img class="img-article-left thumb" src="{{p.photo.url}}" alt="{{p.title}}">
+             {% endif %}
+             <h2>{{p.title}}</h2>
+             {% autoescape off %}
+             {{p.content|linebreaks|truncatechars:300}}
+             {% endautoescape %}
+             <div class="clear"></div>
+             <div class="article-panel">
+                <p class="first">Обновлено: {{p.time_update|date:"d-m-Y H:i:s"}} | Автор: {{ p.author.username|default:'Админ'}}</p>
+                <p class="link-read-post"><a href="{{ p.get_absolute_url }}">Подробнее</a></p>
+             </div>
+
+             {% if page_obj.has_next and forloop.last %}
+             <span hx-get="{% url 'home' %}?page={{ page_obj.next_page_number }}"
+                   hx-swap="beforeend" hx-target="#list-articles" hx-select=".article"
+                   hx-trigger="revealed">
+             </span>
+             {% endif %}
+          </li>
+    {% endfor %}
 </ul>
 {% endblock %}
 
 {% block navigation %}
-{% if page_obj.has_other_pages %}
-<nav class="list-pages">
-    <ul>
-<!--		{% if page_obj.has_previous %}-->
-<!--		<li class="page-num">-->
-<!--			 <a href="?page=1">&laquo;</a>-->
-<!--		</li>-->
-<!--		<li class="page-num">-->
-<!--			 <a href="?page={{ page_obj.previous_page_number }}">&lsaquo;</a>-->
-<!--		</li>-->
-<!--		{% endif %}-->
-        {% for p in page_range %}
-		{% if page_obj.number == p or p == paginator.ELLIPSIS%}
-            <li class="page-num page-num-selected">{{ p }}</li>
-		{% else %}
-        <li class="page-num">
-            <a href="?page={{ p }}">{{ p }}</a>
-        </li>
-		{% endif %}
-        {% endfor %}
-<!--		{% if page_obj.has_next %}-->
-<!--		<li class="page-num">-->
-<!--			<a href="?page={{ page_obj.next_page_number }}">&rsaquo;</a>-->
-<!--		</li>-->
-<!--		<li class="page-num">-->
-<!--			<a href="?page={{ page_obj.paginator.num_pages }}">&raquo;</a>-->
-<!--		</li>-->
-
-{% endif %}
-    </ul>
-</nav>
-{% endif %}
 {% endblock %}
