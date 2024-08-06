@@ -3,7 +3,7 @@ import os
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.core.mail import EmailMessage
 from django.shortcuts import get_object_or_404
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
 
 from testpet import settings
@@ -17,6 +17,9 @@ class IndexView(DataMixin, PaginateMixin, ListView):
     page_title = 'Главная страница'
     template_name = 'basefunc/index.html'
     context_object_name = 'posts'
+
+    def get_url(self):
+        return reverse('home')
 
 
 class AboutView(DataMixin, TemplateView):
@@ -127,6 +130,9 @@ class PostCatsView(PaginateMixin, ListView):
     template_name = 'basefunc/index.html'
     context_object_name = 'posts'
 
+    def get_url(self):
+        return reverse('category', kwargs={'cat_slug': self.kwargs['cat_slug']})
+
     def get_queryset(self):
         return Post.published.filter(cat__slug=self.kwargs['cat_slug'])
 
@@ -142,6 +148,9 @@ class PostCatsView(PaginateMixin, ListView):
 class PostTagsView(PaginateMixin, ListView):
     template_name = 'basefunc/index.html'
     context_object_name = 'posts'
+
+    def get_url(self):
+        return reverse('tag', kwargs={'tag_slug': self.kwargs['tag_slug']})
 
     def get_queryset(self):
         return Post.published.filter(tags__slug=self.kwargs['tag_slug'])

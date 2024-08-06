@@ -19,7 +19,7 @@
              </div>
 
              {% if page_obj.has_next and forloop.last %}
-             <span hx-get="{% url 'home' %}?page={{ page_obj.next_page_number }}"
+             <span hx-get="{{ view.get_url }}?page={{ page_obj.next_page_number }}"
                    hx-swap="beforeend" hx-target="#list-articles" hx-select=".article"
                    hx-trigger="revealed">
              </span>
