@@ -9,7 +9,7 @@ from django.views.generic import TemplateView, ListView, DetailView, CreateView,
 from testpet import settings
 from .models import Post, Category, Tags
 from .forms import AddPostForm, ContactForm
-from .utils import DataMixin, PaginateMixin, get_photo
+from .utils import DataMixin, PaginateMixin
 
 
 class IndexView(DataMixin, PaginateMixin, ListView):
@@ -30,14 +30,13 @@ class AboutView(DataMixin, TemplateView):
 class PostAddView(LoginRequiredMixin, DataMixin, CreateView):
     form_class = AddPostForm
     template_name = 'basefunc/addpage.html'
-    success_url = reverse_lazy('home')
     page_title = 'Добавление новой статьи'
     login_url = 'users:login'
 
     def form_valid(self, form):
         new_post = form.save(commit=False)
         new_post.author = self.request.user
-        photo = get_photo(form)
+        photo = form.cleaned_data.get('photo')
         new_post.photo.save(new_post.title, photo, save=True)
         return super().form_valid(form)
 
@@ -54,15 +53,15 @@ class PostUpdateView(PermissionRequiredMixin, DataMixin, UpdateView):
 
     def form_valid(self, form):
         old_instance = self.queryset.get(pk=self.object.pk)
-        if 'photo' in form.changed_data or 'photo_url' in form.changed_data:
+        if 'photo' in form.changed_data:
             if old_instance.photo:
                 if os.path.isfile(old_instance.photo.path):
                     os.remove(old_instance.photo.path)
 
-        photo_content = get_photo(form)
+        photo = form.cleaned_data.get('photo')
 
-        if photo_content:
-            self.object.photo.save(self.object.title, photo_content, save=True)
+        if photo:
+            self.object.photo.save(self.object.title, photo, save=True)
         else:
             self.object.photo = None
             self.object.save()

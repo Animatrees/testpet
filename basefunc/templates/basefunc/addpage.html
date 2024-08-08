@@ -1,18 +1,29 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block content %}
 <h1>{{ title }}</h1>
 
-<form action="" method="post" enctype="multipart/form-data">
+<form action="" method="post" enctype="multipart/form-data" id="post-form">
     {% csrf_token %}
     <div class="form-error">{{ form.non_field_errors }}</div>
     {% for f in form %}
-    <p class="form-field">
-    <label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}
-    <span class="help-text">{{ f.help_text }}</span>
-    </p>
-    <div class="form-error">{{ f.errors }}</div>
+        <p class="form-field">
+        <label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}
+        <span class="help-text">{{ f.help_text }}</span>
+        </p>
+        <div class="form-error">{{ f.errors }}</div>
+        {% if f.name == 'photo' %}
+            <div id="photo-preview" class="photo-preview"></div>
+        {% elif f.name == 'photo_url' %}
+            <div id="photo-url-preview" class="photo-preview"></div>
+        {% endif %}
     {% endfor %}
-    <p><button type="submit" class="form-button">Сохранить</button></p>
+    <p><button type="submit" class="form-button" id="confirm-btn">Сохранить</button></p>
     <p class="note align-left">Нет нужной категории или страны? <a href="{% url 'contact' %}?info=Просьба добавить категорию/страну">Сообщите нам.</a></p>
 </form>
 {% endblock content %}
+
+{% block extra_js %}
+<script src="{% static 'basefunc/js/image_processing.js' %}" defer></script>
+{% endblock %}

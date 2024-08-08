@@ -36,19 +36,20 @@ class PaginateMixin(MultipleObjectMixin):
         return context
 
 
-def get_photo(form):
-    photo_url = form.cleaned_data.get('photo_url')
-    photo = form.cleaned_data.get('photo')
-    photo_content = None
-
-    if photo_url:
-        try:
-            image_response = requests.get(photo_url)
-            image_response.raise_for_status()
-            photo_content = ContentFile(image_response.content)
-        except requests.exceptions.RequestException:
-            pass
-    elif photo:
-        photo_content = photo
-
-    return photo_content
+# def get_photo(form):
+#     print(form.cleaned_data)
+#     photo_url = form.cleaned_data.get('photo_url')
+#     photo = form.cleaned_data.get('photo')
+#     photo_content = None
+#
+#     if photo_url:
+#         try:
+#             image_response = requests.get(photo_url)
+#             image_response.raise_for_status()
+#             photo_content = ContentFile(image_response.content)
+#         except requests.exceptions.RequestException:
+#             pass
+#     elif photo:
+#         photo_content = photo
+#
+#     return photo_content

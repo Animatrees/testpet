@@ -566,3 +566,13 @@ input[type="checkbox"]:checked::before {
 .align-left {
     text-align: left;
 }
+
+.photo-preview {
+    max-width: 300px;
+}
+
+img {
+  display: block;
+  /* This rule is very important, please don't ignore this */
+  max-width: 100%;
+}
