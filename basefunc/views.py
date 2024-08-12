@@ -1,9 +1,12 @@
 import os
 
+import requests
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.core.mail import EmailMessage
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy, reverse
+from django.views import View
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
 
 from testpet import settings
@@ -164,3 +167,25 @@ class PostTagsView(PaginateMixin, ListView):
         if not context['posts']:
             context['empty_list_message'] = 'Женщин из данной страны нет.'
         return context
+
+
+class ProxyImageView(View):
+    def get(self, request):
+        # Получаем URL изображения из параметров запроса
+        image_url = request.GET.get('url')
+        if not image_url:
+            return JsonResponse({'error': 'No URL provided'}, status=400)
+
+        try:
+            # Запрашиваем изображение с указанного URL
+            response = requests.get(image_url, stream=True)
+            response.raise_for_status()
+
+            # Определяем тип контента (миметип) из заголовков ответа
+            content_type = response.headers.get('Content-Type')
+
+            # Возвращаем изображение с правильным типом контента
+            return HttpResponse(response.content, content_type=content_type)
+
+        except requests.exceptions.RequestException as e:
+            return JsonResponse({'error': str(e)}, status=500)

@@ -17,6 +17,7 @@ urlpatterns = [
     path('delete/<slug:slug>/', views.PostDeleteView.as_view(), name='delete_page'),
     path('category/<slug:cat_slug>/', views.PostCatsView.as_view(), name='category'),
     path('tag/<slug:tag_slug>/', views.PostTagsView.as_view(), name='tag'),
+    path('proxy-image/', views.ProxyImageView.as_view(), name='proxy_image'),
     path(
             "sitemap.xml",
             cache_page(60 * 60 * 24)(sitemap),

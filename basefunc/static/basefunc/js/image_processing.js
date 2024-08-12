@@ -87,12 +87,22 @@ inputPhotoUrl.addEventListener('change', () => {
     photoPreview.innerHTML = '';
 
     const url = inputPhotoUrl.value;
-    photoUrlPreview.innerHTML = `<img src="${url}" id="image" width="300px">`;
+    const proxyUrl = `/proxy-image/?url=${encodeURIComponent(url)}`;
 
-    $('#image').cropper({
-        aspectRatio: 1 / 1,
-        crop(event) {
-            console.log(event.detail.x, event.detail.y, event.detail.width, event.detail.height);
-        },
-    });
+    fetch(proxyUrl)
+        .then(response => response.blob())
+        .then(blob => {
+            const imgURL = URL.createObjectURL(blob);
+            photoUrlPreview.innerHTML = `<img src="${imgURL}" id="image" width="300px">`;
+
+            $('#image').cropper({
+                aspectRatio: 1 / 1,
+                crop(event) {
+                    console.log(event.detail.x, event.detail.y, event.detail.width, event.detail.height);
+                },
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 });
