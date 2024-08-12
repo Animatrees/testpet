@@ -19,11 +19,24 @@
             <div id="photo-url-preview" class="photo-preview"></div>
         {% endif %}
     {% endfor %}
+    <p class="note align-left">*Обратите внимание, что все поля обязательны к заполнению!
+        <br>Фотографию можно загрузить с вашего устройства или используя URL.</p>
     <p><button type="submit" class="form-button" id="confirm-btn">Сохранить</button></p>
     <p class="note align-left">Нет нужной категории или страны? <a href="{% url 'contact' %}?info=Просьба добавить категорию/страну">Сообщите нам.</a></p>
 </form>
 {% endblock content %}
 
 {% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+<link href="{% static 'basefunc/css/select_styles.css' %}" rel="stylesheet" />
 <script src="{% static 'basefunc/js/image_processing.js' %}" defer></script>
+<script>
+    $(document).ready(function() {
+        $('select[name="tags"]').select2({
+            placeholder: '',
+            allowClear: true
+        });
+    });
+</script>
 {% endblock %}

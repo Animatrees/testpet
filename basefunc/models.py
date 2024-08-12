@@ -26,8 +26,8 @@ class Post(models.Model):
         DRAFT = 0, 'Черновик'
         PUBLISHED = 1, 'Опубликовано'
 
-    title = models.CharField(max_length=255, verbose_name='Имя')
-    content = models.TextField(blank=True, verbose_name='Описание')
+    title = models.CharField(max_length=255, verbose_name='Имя', unique=True)
+    content = models.TextField(verbose_name='Описание')
     photo = models.ImageField(upload_to='photos/', blank=True, null=True, default=None,
                               verbose_name='Путь к изображению')
     time_create = models.DateTimeField(auto_now_add=True)
@@ -43,8 +43,8 @@ class Post(models.Model):
         return self.title
 
     class Meta:
-        verbose_name = 'Woman'
-        verbose_name_plural = 'Women'
+        verbose_name = 'Статья'
+        verbose_name_plural = 'Статьи'
         ordering = ['title']
 
     def get_absolute_url(self):

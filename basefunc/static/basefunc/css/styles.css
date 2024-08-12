@@ -21,6 +21,8 @@ a:hover {
 
 
 textarea {
+    width: 650px;
+    height: 350px;
     font-family: "Nunito", sans-serif;
     font-weight: 350;
     font-size: 18px;
@@ -431,12 +433,12 @@ ul.lang-list li a:hover {color: #fdc073;}
 }
 
 .form-input {
-    width: 300px;
+    width: 230px;
 }
 
 .form-label {
     display: inline-block;
-    min-width: 15%;
+    min-width: 16%;
     font-size: 18px;
     font-weight: 300;
     vertical-align: top;
